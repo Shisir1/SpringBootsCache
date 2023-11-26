@@ -1,0 +1,41 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.5'
+	id 'io.spring.dependency-management' version '1.1.3'
+}
+
+group = 'com.example.greenlearner'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	//cache
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+
+	//REST
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	//Spring data
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.0'
+
+	//test implementation
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//mysql connector
+/*	compile 'mysql:mysql-connector-java:8.0.29'*/
+}
+
+tasks.named('bootBuildImage') {
+	builder = 'paketobuildpacks/builder-jammy-base:latest'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
